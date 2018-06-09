@@ -13,8 +13,8 @@ $MODULE_PATH_DEBUG = "$PSScriptRoot\debug\ProxyCommand"
 $SOLUTION_FILE = "$PSScriptRoot\source\ProxyCommand.sln"
 
 $OBJECT_FILES = @(
-  "cmdproxy.exe"
-  "cmdproxy.pdb"
+  "ProxyCommand.exe"
+  "ProxyCommand.pdb"
 )
 
 ############################################################
