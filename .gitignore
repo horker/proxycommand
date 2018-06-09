@@ -1,0 +1,17 @@
+ProxyCommand/
+debug/
+
+.vs/
+bin/
+obj/
+packages/
+*.user
+
+Debug/
+Release/
+x64/
+
+private/
+vendor/
+
+tests/temp/
