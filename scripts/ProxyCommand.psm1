@@ -76,6 +76,26 @@ function Test-Stream {
   }
 }
 
+<#
+.SYNOPSIS
+Makes a proxy command to call a target program.
+
+.DESCRIPTION
+A proxy command is a small program that calls another program as a child process. It can be used as a shortcut in the command line environment.
+
+.PARAMETER ProxyPath
+A directory or name of a proxy command. If a directory is specified, the name of a proxy command is the same as the target program.
+
+.PARAMETER TargetPath
+A target program. A target program should be an executable (.exe) or a batch file (.bat). -TargetPath can be given from the pipeline.
+
+.PARAMETER Async
+When specified, a proxy command doesn't wait for a target program to exit. This option is suitable for GUI applications.
+
+.LINK
+https://github.com/horker/proxycommand
+https://www.powershellgallery.com/packages/ProxyCommand
+#>
 function New-ProxyCommand {
   [CmdletBinding()]
   param(
@@ -110,6 +130,16 @@ function New-ProxyCommand {
   }
 }
 
+<#
+.SYNOPSIS
+Shows information on proxy commands.
+
+.DESCRIPTION
+Shows information on proxy commands.
+
+.PARAMETER Path
+The location or name of proxy commands.
+#>
 function Show-ProxyCommand {
   [CmdletBinding()]
   param(
