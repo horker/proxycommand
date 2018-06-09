@@ -90,7 +90,7 @@ function New-ProxyCommand {
 
   process {
     if ([IO.Directory]::Exists($TargetPath)) {
-      $files = Get-ChildItem $p | where { $_.Extension -match "\.(exe|bat)$" }
+      $files = Get-ChildItem $TargetPath | where { $_.Extension -match "\.(exe|bat)$" }
       foreach ($f in $files) {
         Set-ProxyCommand $ProxyPath $f $Async
       }
