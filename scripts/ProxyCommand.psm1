@@ -80,7 +80,7 @@ function New-ProxyCommand {
     [Parameter(Position=1, ValueFromPipeline=$true, Mandatory=$true)]
     [string]$TargetPath,
 
-    [Parameter(Mandatory=$false)]
+    [Parameter(Position=2, Mandatory=$false)]
     [switch]$Async
   )
 
@@ -90,9 +90,9 @@ function New-ProxyCommand {
 
   process {
     if ([IO.Directory]::Exists($TargetPath)) {
-      $executables = Get-ChildItem $TargetPath -Filter *.exe
-      foreach ($e in $executables) {
-        Set-ProxyCommand $ProxyPath $e $Async
+      $files = Get-ChildItem $p | where { $_.Extension -match "\.(exe|bat)$" }
+      foreach ($f in $files) {
+        Set-ProxyCommand $ProxyPath $f $Async
       }
     }
     else {
