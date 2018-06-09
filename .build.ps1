@@ -10,7 +10,7 @@ $SCRIPT_PATH = "$PSScriptRoot\scripts"
 $MODULE_PATH = "$PSScriptRoot\ProxyCommand"
 $MODULE_PATH_DEBUG = "$PSScriptRoot\debug\ProxyCommand"
 
-$SOLUTION_FILE = "$PSScriptRoot\source\cmdproxy.sln"
+$SOLUTION_FILE = "$PSScriptRoot\source\ProxyCommand.sln"
 
 $OBJECT_FILES = @(
   "cmdproxy.exe"
