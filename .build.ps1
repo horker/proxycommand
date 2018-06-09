@@ -17,11 +17,6 @@ $OBJECT_FILES = @(
   "cmdproxy.pdb"
 )
 
-#$HELP_INPUT =  "$SOURCE_PATH\bin\Release\Horker.DataAnalysis.dll"
-#$HELP_INTERM = "$SOURCE_PATH\bin\Release\Horker.Data.dll-Help.xml"
-#$HELP_OUTPUT = "$MODULE_PATH\Horker.Data.dll-Help.xml"
-#$HELPGEN = "$PSScriptRoot\vendor\XmlDoc2CmdletDoc.0.2.10\tools\XmlDoc2CmdletDoc.exe"
-
 ############################################################
 
 function New-Folder2 {
@@ -96,15 +91,6 @@ task Build {
     Copy-ObjectFiles $MODULE_PATH_DEBUG "$SOURCE_PATH\Debug"
   }
 }
-
-#task BuildHelp `
-#  -Inputs $HELP_INPUT `
-#  -Outputs $HELP_OUTPUT `
-#{
-#  . $HELPGEN $HELP_INPUT
-#
-#  Copy-Item $HELP_INTERM $MODULE_PATH
-#}
 
 task Test {
   Invoke-Pester "$PSScriptRoot\tests"
