@@ -1,7 +1,7 @@
 Set-StrictMode -Version 3
 
 $GUID = "f482a1af-fdd3-4548-9b56-58149d54ce21"
-$PROXY_COMMAND = "$PSScriptRoot\cmdproxy.exe"
+$PROXY_COMMAND = "$PSScriptRoot\ProxyCommand.exe"
 
 function Set-ProxyCommand {
   param(
@@ -106,7 +106,7 @@ function New-ProxyCommand {
     [object]$TargetPath,
 
     [Parameter(Position=2, Mandatory=$false)]
-    [switch]$Async
+    [switch]$Async = $false
   )
 
   begin {

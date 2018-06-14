@@ -4,18 +4,18 @@ Set-StrictMode -Version 4
 
 ############################################################
 
-$SOURCE_PATH = "$PSScriptRoot\source\x64"
-$SCRIPT_PATH = "$PSScriptRoot\scripts"
-
-$MODULE_PATH = "$PSScriptRoot\ProxyCommand"
-$MODULE_PATH_DEBUG = "$PSScriptRoot\debug\ProxyCommand"
-
 $SOLUTION_FILE = "$PSScriptRoot\source\ProxyCommand.sln"
+
+$OBJECT_PATH = "$PSScriptRoot\source\x64"
+$SCRIPT_PATH = "$PSScriptRoot\scripts"
 
 $OBJECT_FILES = @(
   "ProxyCommand.exe"
   "ProxyCommand.pdb"
 )
+
+$MODULE_PATH = "$PSScriptRoot\ProxyCommand"
+$MODULE_PATH_DEBUG = "$PSScriptRoot\debug\ProxyCommand"
 
 ############################################################
 
@@ -87,8 +87,8 @@ task Build {
       }
     }
 
-    Copy-ObjectFiles $MODULE_PATH "$SOURCE_PATH\Release"
-    Copy-ObjectFiles $MODULE_PATH_DEBUG "$SOURCE_PATH\Debug"
+    Copy-ObjectFiles $MODULE_PATH "$OBJECT_PATH\Release"
+    Copy-ObjectFiles $MODULE_PATH_DEBUG "$OBJECT_PATH\Debug"
   }
 }
 
