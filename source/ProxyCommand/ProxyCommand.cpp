@@ -496,7 +496,7 @@ int main()
         ExitOnError(L"Failed to create a process");
     }
 
-    // Wait the child process to exit
+    // Wait for the child process to exit
 
     if (!async) {
         HANDLE childProcess = processInformation.hProcess;

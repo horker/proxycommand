@@ -87,7 +87,7 @@ A proxy command is a small program that calls another program as a child process
 A directory or name of a proxy command. If a directory is specified, the name of a proxy command is the same as the target program.
 
 .PARAMETER TargetPath
-A target program. A target program should be an executable (.exe) or a batch file (.bat). -TargetPath can be given from the pipeline.
+A target program.  A path of a target program. If it is a file, it should be an executable (`.exe`) or a batch file (`.bat`). If a directory is given, the cmdlet looks for executables and batch files in it. This parameter can be given from the pipeline.
 
 .PARAMETER Async
 When specified, a proxy command doesn't wait for a target program to exit. This option is suitable for GUI applications.
