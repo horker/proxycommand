@@ -14,8 +14,6 @@ A proxy command effectively avoids this issue by calling a target program as a c
 
 ## Installation
 
-(TBD)
-
 The module is available in the [PowerShell Gallery](https://www.powershellgallery.com/packages/ProxyCommand).
 
 ```PowerShell
