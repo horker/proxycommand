@@ -34,6 +34,8 @@ Makes a proxy command to call a target program.
 
 - `-Async` When specified, a proxy command doesn't wait for a target program to exit. This option is suitable for GUI applications.
 
+-----
+
 ```PowerShell
 Show-ProxyCommand [-Path] <string[]>
 ```
@@ -60,10 +62,12 @@ Use the `New-ProxyCommand` cmdlet.
 If you want to use Microsoft Excel in the command line, enter the following:
 
 ```PowerShell
-PS> New-ProxyCommand ~/proxybin 'C:\Program Files\Microsoft Office\Root\Office16\EXCEL.EXE'
+PS> New-ProxyCommand ~/proxybin 'C:\Program Files\Microsoft Office\Root\Office16\EXCEL.EXE' -Async
 ```
 
-*(Note: The location of the executable may differ depending on your Windows and Office versions. Investigate the registry key `HKEY_CLASSES_ROOT\\.xlsx`.)*
+It would be better to add the `-Async` option for GUI applications to avoid the console to stop until it terminates.
+
+*(Note: The location of the executable may differ depending on your Windows and Office versions.)*
 
 ### Creating proxy commands at once
 
