@@ -170,7 +170,10 @@ public:
             return *this;
         }
 
-        return String(rhs);
+        Clear();
+        Append(rhs);
+
+        return *this;
     }
 
     size_t Length() const
@@ -254,6 +257,12 @@ public:
         length_ -= length;
     }
 
+    void Clear()
+    {
+        length_ = 0;
+        *buffer_ = 0;
+    }
+
     StringT<T> Substring(size_t start, size_t length = (size_t)-1)
     {
         if (length == (size_t)-1) {
@@ -323,10 +332,12 @@ static void ExitOnError(const wchar_t* message)
         (LPWSTR)&buff,
         0, NULL);
 
-    String s(message);
+    String s(L"[ProxyCommand] ");
+    s.Append(message);
     s.Append(L": ");
     s.Append(buff);
     s.Append(L"\n");
+
     LocalFree(buff);
 
     Print(s.Buffer());
@@ -463,13 +474,27 @@ int main()
 
     bool async = ExistsDataStream(L"Async");
 
+    // Find a commnad line
+
+    String prepend;
+
+    bool argExists = ExistsDataStream(L"Prepend");
+    if (argExists) {
+        prepend = ReadDataStream(L"Prepend");
+    }
+
     // Build a commnad line
 
     String targetPath = ReadDataStream(L"TargetPath");
 
     String line(L"\"");
     line.Append(targetPath);
-    line.Append(L"\"");
+    line.Append(L"\" ");
+
+    if (argExists) {
+        line.Append(prepend.Buffer());
+        line.Append(L" ");
+    }
 
     const wchar_t* p = GetArgumentPortion(GetCommandLine());
     line.Append(p);

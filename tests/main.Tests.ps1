@@ -34,6 +34,15 @@ Describe "Parameters" {
     $result | Should -Be "arg1 arg 2"
   }
 
+  It "passes arguments with -Prepend option" {
+    $proxy = "$proxyRoot\test2.exe"
+    New-ProxyCommand $proxy $testApp -Prepend "pre"
+
+    $result = . $proxy arg1 "arg 2"
+
+    $result | Should -Be "pre arg1 arg 2"
+  }
+
 }
 
 Describe "Redirect" {
@@ -87,6 +96,17 @@ Describe "Batch file" {
     $result = . "$proxyRoot\$testBatch"
 
     $result | Should -Be "test"
+  }
+
+  It "accept a batch file with arguments" {
+    $testBatch = "test.bat"
+    "@echo off`necho %*" | Set-Content "$testRoot\$testBatch"
+
+    New-ProxyCommand $proxyRoot "$testRoot\$testBatch" -Prepend "pre"
+
+    $result = . "$proxyRoot\$testBatch" arg1 arg2
+
+    $result | Should -Be "pre arg1 arg2"
   }
 
 }
