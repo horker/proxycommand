@@ -87,7 +87,7 @@ Describe "Async" {
 
 Describe "Batch file" {
 
-  It "accept a batch file" {
+  It "accepts a batch file" {
     $testBatch = "test.bat"
     "@echo off`necho test" | Set-Content "$testRoot\$testBatch"
 
@@ -98,7 +98,7 @@ Describe "Batch file" {
     $result | Should -Be "test"
   }
 
-  It "accept a batch file with arguments" {
+  It "accepts a batch file with arguments" {
     $testBatch = "test.bat"
     "@echo off`necho %*" | Set-Content "$testRoot\$testBatch"
 
@@ -107,6 +107,32 @@ Describe "Batch file" {
     $result = . "$proxyRoot\$testBatch" arg1 arg2
 
     $result | Should -Be "pre arg1 arg2"
+  }
+
+}
+
+Describe "Show-ProxyCommand" {
+
+  It "shows a proxycommand for an executable" {
+    $proxy = "$proxyRoot\test.exe"
+    New-ProxyCommand $proxy $testApp -Prepend "pre" -Async
+
+    $pc = Show-ProxyCommand $proxy
+    $pc.TargetPath | Should -Be $testApp
+    $pc.Async | Should -Be $true
+    $pc.Prepend | Should -Be "pre"
+  }
+
+  It "shows a proxycommand for a batch file" {
+    $testBatch = "test.bat"
+    "@echo off`necho %*" | Set-Content "$testRoot\$testBatch"
+
+    New-ProxyCommand $proxyRoot "$testRoot\$testBatch" -Prepend "pre"
+
+    $pc = Show-ProxyCommand "$proxyRoot\$testBatch"
+    $pc.TargetPath | Should -Be "$testRoot\$testBatch"
+    $pc.Async | Should -Be $false
+    $pc.Prepend | Should -Be "pre"
   }
 
 }
