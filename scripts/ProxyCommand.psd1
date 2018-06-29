@@ -12,7 +12,7 @@
 RootModule = 'ProxyCommand.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.0'
+ModuleVersion = '1.1.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = ''
@@ -119,6 +119,9 @@ PrivateData = @{
 
         # ReleaseNotes of this module
         ReleaseNotes = @"
+v1.1.0
+Add -Prepend option
+
 v1.0.0
 First release
 "@
